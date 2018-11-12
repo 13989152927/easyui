@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace 指定实现的接口（权限列名） -->
+<mapper namespace="com.dao.EmpDao">
+    
+    <insert id="save" parameterType="com.entity.Emp">
+    insert into e_emp values (#{id},#{name},#{age},#{bir})
+</insert>
+
+
+    <select id="findAll" resultType="com.entity.Emp">
+    select id,name,age,bir from e_emp
+</select>
+    
+    <select id="findBypage" resultType="com.entity.Emp">
+    select id,name,age,bir from e_emp limit #{start},#{rows}
+ </select>
+
+    <select id="findTotals" resultType="long">
+    select count(id) from e_emp
+ </select>
+    
+    
+    
+    
+    <delete id="EmpdelstId" parameterType="String">
+        delete from e_emp where id=#{id}
+    </delete>
+<update id="Empupdate" parameterType="com.entity.Emp">
+    update e_emp set name=#{id},age=#{age},bir=#{bir} where id=#{id}
+</update>
+    <select id="EmpId" parameterType="String" resultType="com.entity.Emp">
+        select id,name,age,bir from e_emp where id=#{id}
+    </select>
+
+    <delete id="delectAll" parameterType="String">
+        delete from e_emp where id in  <foreach collection="list" open="(" item="item" separator="," close=")">
+        #{item}
+    </foreach>
+    </delete>
+   <!-- select count(*) from books
+    where lei_id in  <foreach collection="list" open="(" item="item" separator="," close=")">
+    #{item}
+</foreach>-->
+</mapper>
+

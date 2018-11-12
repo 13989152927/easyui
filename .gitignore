@@ -1,0 +1,8 @@
+*.class
+*.log
+*.rar
+*.iml
+target
+
+
+hs_err_pid*
